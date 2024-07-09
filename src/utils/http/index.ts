@@ -9,6 +9,9 @@ import type {
   import {ResultEnum} from './httpEnums'
   import { useUserStore } from '@/store/modules/user'
   import {resetStore} from '../reset'
+  import router from '@/router'
+  import {LOGIN_URL} from '@/config/config'
+  import type {ResultData} from './types'
 
   const serveice:AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -36,7 +39,7 @@ import type {
  * @description: 响应拦截器
  * @returns {*}
  */
-service.interceptors.response.use(
+serveice.interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response
     // * 登陆失效（code == 203）
@@ -90,7 +93,7 @@ const http = {
     params?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
-    return service.get(url, { params, ...config })
+    return serveice.get(url, { params, ...config })
   },
 
   post<T>(
@@ -98,7 +101,7 @@ const http = {
     data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
-    return service.post(url, data, config)
+    return serveice.post(url, data, config)
   },
 
   put<T>(
@@ -106,7 +109,7 @@ const http = {
     data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
-    return service.put(url, data, config)
+    return serveice.put(url, data, config)
   },
 
   delete<T>(
@@ -114,7 +117,7 @@ const http = {
     data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
-    return service.delete(url, { data, ...config })
+    return serveice.delete(url, { data, ...config })
   },
 }
 

@@ -1,9 +1,9 @@
 import {defineStore} from 'pinia'
-import {logout,getUserInfo} from './api'
+import {logout,getUserInfo} from '@/api'
 import type { UserState } from './model/userModel'
 import type { UserInfo } from '@/api/user/types'
 
-export const userStore  = defineStore({
+export const useUserStore  = defineStore({
     id:'app-user',
     state:():UserState => ({
     token:'',
@@ -19,11 +19,15 @@ export const userStore  = defineStore({
       },
           async Logout(){
             await logout()
-          }
-        //   async GetInfoAction(){
+          },
+          async GetInfoAction(){
+            const {data} = await getUserInfo()
+            this.userInfo = data
+            console.log(data)
 
-        //   }
-    }
+
+          }
+    },
      
-    
+   persist:true 
 })

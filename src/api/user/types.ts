@@ -4,7 +4,7 @@ export interface LoginData {
     password: string
   }
   
-  export interface UserRes {
+  export interface UserRefs {
     userId?: string
     name: string
     avatar: string
