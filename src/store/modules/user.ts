@@ -4,7 +4,7 @@ import type { UserState } from './model/userModel'
 import type { UserInfo } from '@/api/user/types'
 
 export const useUserStore  = defineStore({
-    id:'app-user',
+    id:'app-user',//   id: 必须的，在所有 Store 中唯一
     state:():UserState => ({
     token:'',
     userInfo:null

@@ -34,9 +34,16 @@
   import { reactive, ref } from 'vue'
   import type { FormInstance, FormRules } from 'element-plus'
   import { login }from '@/api/user'
+  import { ElNotification } from 'element-plus'
+  import { HOME_URL } from '@/config/config'
+  import {useUserStore} from '@/store/modules/user'
+import { useRouter, useRoute } from 'vue-router'
+import {timeFix} from '@/utils/index'
   
   const ruleFormRef = ref<FormInstance>()
-  
+  const userStore = useUserStore()
+  const router = useRouter()
+  const route = useRoute()
   const checkAge = (rule: any, value: any, callback: any) => {
     if (!value) {
       return callback(new Error('Please input the age'))
@@ -81,12 +88,24 @@
    password: [{ validator: checkAge, trigger: 'blur' }],
   })
   
-  const submitForm = (formEl: FormInstance | undefined) => {
+  const submitForm = async (formEl: FormInstance | undefined) => {
 
     console.log('数据',formEl)
-      login(ruleForm).then(res=>{
-            console.log(res,'RES')
-        }).catch(error=>console.log(error))
+    try{ 
+    const data = await login(ruleForm)
+    userStore.setToken(data)
+      router.replace((route.query.redirect as string) || HOME_URL)
+      ElNotification({
+        title: `hi,${timeFix()}!`,
+        message: `欢迎回来`,
+        type: 'success',
+      })}finally{
+    console.log('sss')
+   }
+    
+    
+
+
    if (!formEl) return
     // formEl.validate((valid) => {
     //   if (valid) {

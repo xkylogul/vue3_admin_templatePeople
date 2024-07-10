@@ -16,7 +16,8 @@ export default defineConfig(
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
+        //'@': fileURLToPath(new URL('./src', import.meta.url))
+        '@': path.resolve(__dirname, 'src'),
       }
     },
     pluginOptions: {
@@ -25,15 +26,17 @@ export default defineConfig(
         patterns: []
       }
     },
-    server:{
-      host:'localhost',
-      port:Number(env.VITE_APP_PORT),
-      proxy:{
-        [env.VITE_APP_BASE_API]: 'http://sph-api.atguigu.cn',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dev-api/, ''),
-      }
-    }
+    server: {
+      host: 'localhost',
+      port: Number(env.VITE_APP_PORT),
+      proxy: {
+        [env.VITE_APP_BASE_API]: {
+          target: 'http://sph-api.atguigu.cn',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/dev-api/, ''),
+        },
+      },
+    },
   
   }
   }
