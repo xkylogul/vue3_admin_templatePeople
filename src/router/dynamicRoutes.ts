@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+//import { RouteRecordRaw } from 'vue-router'
 
 const LAYOUT = () => import('@/layouts/index.vue')
 
@@ -26,7 +26,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       {
         name: 'Role',
         path: '/acl/role',
-        component: () => import('@/views/acl/role/index.vue'),
+        component: () => import('@/views/acl/roles/index.vue'),
         meta: {
           title: '角色管理',
           icon: 'Avatar',
@@ -82,9 +82,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'Spu',
-        path: '/product/spu',
-        component: () => import('@/views/product/spu/index.vue'),
+        name: 'Sup',
+        path: '/product/sup',
+        component: () => import('@/views/product/sup/index.vue'),
         meta: {
           title: 'spu列表',
           icon: 'Grid',
