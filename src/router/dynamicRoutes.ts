@@ -160,16 +160,17 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           title: '客户列表',
           icon: 'Grid',
         },
+        
       },
-      {
-        name: 'Label',
-        path: '/client-user/label',
-        component: () => import('@/views/client-user/label/index.vue'),
-        meta: {
-          title: '客户标签',
-          icon: 'Grid',
-        },
-      },
+      // {
+      //   name: 'Label',
+      //   path: '/client-user/labels',
+      //   component: () => import('@/views/client-user/labels/index.vue'),
+      //   meta: {
+      //     title: '客户标签',
+      //     icon: 'Grid',
+      //   },
+      // },
       {
         name: 'Level',
         path: '/client-user/level',
@@ -179,7 +180,19 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           icon: 'Grid',
         },
       },
+      // {
+      //   name: 'Aways',
+      //   path: '/client-user/aways',
+      //   component: () => import('@/views/client-user/aways/index.vue'),
+      //   meta: {
+      //     title: '客户身份',
+      //     icon: 'Grid',
+      //   },
+      // },
     ],
+    
+  
+
   },
   // 订单管理
   {
@@ -189,7 +202,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/order/list',
     meta: {
       title: '订单管理',
-      icon: 'ShoppingTrolley',
+      icon: 'Grid',
     },
     children: [
       {

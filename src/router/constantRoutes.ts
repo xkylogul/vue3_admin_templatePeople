@@ -1,4 +1,4 @@
-//import {RouteRecordRaw} from 'vue-router'
+import type {RouteRecordRaw} from 'vue-router'
 import {HOME_URL,LOGIN_URL} from '@/config/config'
 /**
  * @description 静态路由
@@ -7,6 +7,7 @@ export const staticRoutes: RouteRecordRaw[] = [
     {
       path: LOGIN_URL,
       name: 'login',
+     // redirect: LOGIN_URL,
       meta: {
         isHide: true,
       },
@@ -21,10 +22,10 @@ export const staticRoutes: RouteRecordRaw[] = [
       component: () => import('@/views/error/error-404.vue'),
     },
     {
-      path: '/',
+      path: '/index',
       name: 'LAYOUT',
-      component: () => import('@/layouts/index.vue'),
       redirect: HOME_URL,
+      component: () => import('@/layouts/index.vue'),
       meta: {
         title: '首页',
         icon: 'HomeFilled',

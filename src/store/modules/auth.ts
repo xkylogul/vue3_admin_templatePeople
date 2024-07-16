@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
-import {AuthState} from './model/authModel'
-import {AuthInfo} from '@/api/user/types'
+import type {AuthState} from './model/authModel'
+import type {AuthInfo} from '@/api/user/types'
 export const useAuthStore = defineStore({
     id:'app-auth',
     state:():AuthState=>({

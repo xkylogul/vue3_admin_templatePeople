@@ -7,5 +7,6 @@ export interface LoginParams{
 export interface UserState{
     userInfo:any
     token?:string
+    testDa?:string
 
 }

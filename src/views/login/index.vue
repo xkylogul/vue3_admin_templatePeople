@@ -93,7 +93,7 @@ import {timeFix} from '@/utils/index'
     console.log('数据',formEl)
     try{ 
     const data = await login(ruleForm)
-    userStore.setToken(data)
+    userStore.setToken(data.data)
       router.replace((route.query.redirect as string) || HOME_URL)
       ElNotification({
         title: `hi,${timeFix()}!`,

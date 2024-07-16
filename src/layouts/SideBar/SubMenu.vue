@@ -1,49 +1,67 @@
 <template>
-    <div>
-     <!-- <template v-for="(item,index)  in menuList" :key="index">
-    <span>{{ item.meta.title }}</span>
-    <SubMenu v-if="'children' in item" :menuList="item.children"></SubMenu>
-     </template> -->
-          <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-        >
-          <el-sub-menu index="1"  v-for="(item,index)  in menuList" :key="index">
-            <template #title>
-              <el-icon><location /></el-icon>
-              <span>{{ item.meta.title }}</span>
-              <!-- <SubMenu v-if="'children' in item" :menuList="item.children"></SubMenu> -->
-            </template>
-            <el-menu-item-group v-show="'children' in item"  v-for="(itemx,index)  in item.children" :key="index">
-              <el-menu-item index="1-1">{{itemx.meta.title}}</el-menu-item>
-            </el-menu-item-group>
-            </el-sub-menu>
-              </el-menu> 
-          
-     <!-- <div @click="test">测试数据</div>
-      
-     <div v-show="isShow">{{menuList}}</div> -->
-    </div>
-  </template>
+  <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+    <el-radio-button :value="false">expand</el-radio-button>
+    <el-radio-button :value="true">collapse</el-radio-button>
+  </el-radio-group> -->
+  <el-menu
+    class="el-menu-vertical-demo"
+    :collapse="isCollapse"
+    :defaultActive="activeMenu"
+    @open="handleOpen"
+    @close="handleClose"
+    :unique-opened="true"
+    :router="true"
+  >
+    <el-sub-menu :index="emunItem.path" v-for="emunItem in menuList" :key="emunItem.path">
+      <template #title>
+        <!-- <el-icon><location /></el-icon> -->
+        <el-icon>
+        <component :is="emunItem.meta.icon"></component>
+      </el-icon>
+        <span>{{ emunItem?.meta.title }}</span>
+      </template>
+      <el-menu-item-group>
   
-  <script setup>
-  import {ref} from 'vue'
- const props = defineProps({
-    menuList:{
-        type:Array,
-        default:()=>[]
-    }
- })
- const isShow = ref(false)
-  const test =()=>{
-    isShow.value =true
-    console.log(props.menuList)
+        <el-menu-item v-show =emunItem&&emunItem.children  :index="item.path" v-for="item in emunItem.children" :key="item.path">{{ item.meta.title }}</el-menu-item>
+    
+      </el-menu-item-group>
+    </el-sub-menu>
+ 
+  </el-menu>
+</template>
+<script lang="ts">
+export default {
+  name:"SubMenu"
+}
+</script>
+<script lang="ts" setup>
+import { ref ,computed} from 'vue'
+import {useRoute} from 'vue-router'
+const props = defineProps({
+  menuList:{
+    reuqire:true,
+    default:()=>[]
   }
-  </script>
-  
-  <style lang="scss" scoped>
-  
-  </style>
-  
+})
+const route = useRoute()
+const activeMenu = computed(() =>
+      route.meta.activeMenu ? (route.meta.activeMenu as string) : route.path,
+    )
+const test =()=>{
+  console.log(props.menuList,'menuList')
+}
+const isCollapse = ref(false)
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+</script>
+
+<style>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+</style>

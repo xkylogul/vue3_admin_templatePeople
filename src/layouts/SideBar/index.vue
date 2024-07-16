@@ -41,7 +41,7 @@
       </el-col>
       <el-col :span="12">
         <h5 class="mb-2">Custom colors</h5>
-        <div class="test"></div>
+    
       </el-col>
     </el-row>
   </template>
