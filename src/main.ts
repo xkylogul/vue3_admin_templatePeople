@@ -7,6 +7,8 @@ import App from './App.vue'
 import router from './router'
 import pinia from '@/store/index'
 import * as ElIcon from '@element-plus/icons'
+//import Antd from 'ant-design-vue';
+//import 'ant-design-vue/dist/reset.css';
 /** 加载异步路由 */
 //import '@/router/initDynamicRouter'
 
@@ -16,6 +18,7 @@ for(const name in ElIcon){
     app.component(name,(ElIcon as any)[name])
 }
 app.use(ElementPlus)
+//app.use(Antd)
 app.use(pinia)
 app.use(router)
 

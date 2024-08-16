@@ -3,6 +3,37 @@
 const LAYOUT = () => import('@/layouts/index.vue')
 
 export const dynamicRoutes: RouteRecordRaw[] = [
+  //控制面板
+  {
+    name: 'Dashboard',
+    path: '/dashboard',
+    component: LAYOUT,
+    redirect: '/dashboard/analysic',
+    meta: {
+      title: 'Dashboard',
+      icon: 'Lock',
+    },
+    children: [
+      {
+        name: 'Analysis',
+        path: '/dashboard/analysic',
+        component: () => import('@/views/dash-board/analysic/index.vue'),
+        meta: {
+          title: '分析页',
+          icon: 'UserFilled',
+        },
+      },
+      {
+        name: 'Workbench',
+        path: '/dashboard/workbench',
+        component: () => import('@/views/dash-board/workbench/index.vue'),
+        meta: {
+          title: '工作台',
+          icon: 'Avatar',
+        },
+      },
+    ],
+  },
   // 权限管理
   {
     name: 'Acl',

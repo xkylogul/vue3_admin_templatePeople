@@ -5,13 +5,13 @@
             <div class="layout-main" :class="{'is-collapse':collapse}">
                 <!--头部-->
                 <div class="layout-hrader fixed-header" :class="{'is-collapse':collapse}">
-                    <div>1</div>
-                    <div>2</div>
+                    <!-- <div>1</div>
+                    <div>2</div> -->
                 </div>
                 <div class="app-main-container">
                     <!--主体内容-->
                     <Main></Main>
-                    <div>页脚</div>
+                    <!-- <div>页脚</div> -->
                 </div>
             </div>
         </div>
@@ -43,6 +43,9 @@ z-index:997;
         &.fixed{
          display:flex;
          justify-content: flex-start;
+        }
+        .layout-main{
+            flex:1
         }
     }
 
